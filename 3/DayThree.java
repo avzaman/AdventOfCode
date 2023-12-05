@@ -40,9 +40,6 @@ public class DayThree {
                 subMatrix[i][j] = matrix[x1+i][y1+j];
             }
         }
-
-        
-        
         return subMatrix;
     }
 
@@ -73,7 +70,6 @@ public class DayThree {
         //return 0 if we only find nums or '.'
         return 0;
     }
-
 
     public static void main(String args[]){
         //Set of numbers and . to check for validity in submatrix
