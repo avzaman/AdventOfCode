@@ -27,7 +27,7 @@ public class DaySix {
             System.out.print(e);
         }
         //god I hate this character
-        content = content.replaceAll("\r","");
+        content = content.replaceAll("\r","");    
     }
     
 }
