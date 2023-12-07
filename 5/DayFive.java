@@ -43,7 +43,7 @@ public class DayFive {
         String[] rangeStrings = map.split(":")[1].split("\n");
         String[] row;// = new String[3];
         long src, des, len;
-        //System.out.println(Arrays.toString(rangeStrings));
+        System.out.println(Arrays.toString(rangeStrings));
 
         for(String s : rangeStrings){
             if(s.equals("")){continue;}
