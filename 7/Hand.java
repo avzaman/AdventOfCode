@@ -132,5 +132,4 @@ public class Hand implements Comparable<Hand> {
         }
         return 0;
     }
-
 }
