@@ -164,4 +164,30 @@ for line in open("input16.txt"):
 visited = {}
 traverse(matrix,visited,"right",0,0)
          
-print(len(visited))
+#print(len(visited))
+
+#########part 2
+best = 0
+
+for i in range(0,len(matrix)):
+    visited = {}
+    traverse(matrix,visited,"right",i,0)
+    if len(visited) > best:
+        best = len(visited)
+
+    visited = {}
+    traverse(matrix,visited,"down",0,i)
+    if len(visited) > best:
+        best = len(visited)
+
+    visited = {}
+    traverse(matrix,visited,"right",i,len(matrix[0])-1)
+    if len(visited) > best:
+        best = len(visited)
+
+    visited = {}
+    traverse(matrix,visited,"up",len(matrix)-1,i)
+    if len(visited) > best:
+        best = len(visited)
+        
+print(best)
