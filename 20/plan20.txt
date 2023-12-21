@@ -1,0 +1,68 @@
+# % nodes start off, if recieve high pules do nothing
+# if recieve low pulse: switch state
+#   if off to on: send high pulse
+#   if on to off: send low pulse
+# & nodes need to save input connections, initialized to low pulses
+#   when recieve pulse update saved input
+#   then if all are high: send out low
+#   if there is a low saved: send out high
+# start at broadcaster sendiong out a low
+######
+# need a module class with:
+#   name
+#   lows = 0 counts lows sent out
+#   highs = 0 counts highs sent out
+#   process = queue of incoming pulses to handle (pulses are tuples <src,high/low>)
+#   type = % or & or b
+#   list = list of inputs
+#   list = list of outputs
+#   int = 0 or 1 for on or off
+# %'s can ignore inputs, &'s can ignore on/off
+######
+# make module with string function:
+#
+# for Modules:
+#   for outputs.Modules:
+#       output.inputs[output] = low
+#
+# make set of modules with names as keys
+#
+# for 1000:
+#   add broadcast to Master queue
+#   while queue:
+#       processModule(queue.pop)
+#
+# processModule:
+# if %:
+#   while process:
+#       if process.pop[1] == low:
+#           if int is 0 then turn 1, else turn 0
+#           if int is 1:
+#               for outputs:
+#                   high++
+#                   output.process.push <this,high>
+#                   Master.push output
+#           if int is 0:
+#               for outputs:
+#                   low++
+#                   output.process.push <this,low>
+#                   Master.push output
+# if &:
+#   while process:
+#       curr = process.pop
+#       inputs.curr[0] = curr[1]
+#       if low in inputs:
+#           for outputs:
+#               high++
+#               output.process.push <this,high>
+#               Master.push output
+#       else:
+#           for outputs:
+#               low++
+#               output.process.push <this,low>
+#               Master.push output
+#
+# for Modules:
+#   lows += module.low
+#   highs += module.high
+# output = lows*highs
