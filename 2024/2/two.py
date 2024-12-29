@@ -36,7 +36,15 @@ with open("input2.txt", "r") as file:
     for line in file:
         levels = line.split(" ")
         levels = [int(float(x)) for x in levels]
-        if checkRow(levels):
-            safe+=1
+        if checkRowFinal(levels):
+            # print(levels,"good")
+            safe += 1
+        else:
+            for i,_ in enumerate(levels):
+                newLevels = levels[:i]+levels[i+1:]
+                if checkRowFinal(newLevels):
+                    # print(levels,"bad")
+                    safe+=1
+                    break
                    
 print(safe)
